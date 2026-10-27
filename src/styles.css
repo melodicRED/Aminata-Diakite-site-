@@ -1,0 +1,70 @@
+:root {
+  /* Free stand-ins for FH Oscar / FH Premier (sans) and FH 1089 (serif) */
+  --sans: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; -webkit-font-smoothing: antialiased; }
+p { margin: 0; white-space: pre-wrap; overflow-wrap: break-word; }
+a { color: inherit; text-decoration: none; }
+.link span { transition: color 0.2s; text-underline-offset: 0.15em; }
+.link:hover span { color: var(--hover, inherit) !important; }
+:focus-visible { outline: 2px solid #7c000c; outline-offset: 2px; }
+
+/* ---------- Canvas: 1 unit = 1px of the 1024px design, scaled to the window ---------- */
+.canvas { container-type: inline-size; min-height: 100vh; overflow-x: clip; padding-bottom: 1px; }
+.stage {
+  --u: calc(100cqw / 1024);
+  position: relative;
+  height: calc(var(--H) * var(--u));
+}
+.item {
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+}
+.item-text { height: auto; }
+.item img, .item video, .item iframe, .fill { display: block; width: 100%; height: 100%; border: 0; }
+.item img, .item video { object-fit: cover; }
+.rule { position: absolute; left: 0; right: 0; top: 50%; border-top-style: solid; }
+
+/* Hover reveals (Work list thumbnails, blog images) */
+.reveal { opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+.reveal.on { opacity: 1; }
+
+.phone-only { display: none; }
+
+/* ---------- Phone layout: 325px design ---------- */
+@media (max-width: 700px) {
+  .stage { --u: calc(100cqw / 325); height: calc(var(--PH) * var(--u)); }
+  .item {
+    left: calc(var(--px) * var(--u));
+    top: calc(var(--py) * var(--u));
+    width: calc(var(--pw) * var(--u));
+    height: calc(var(--ph) * var(--u));
+  }
+  .item-text { height: auto; }
+  .desktop-only { display: none; }
+  .phone-only { display: block; }
+  .stage .menu-button { display: block; z-index: 10; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none; }
+}
+
+/* Phone menu: "+" button that turns into "×" and slides the menu panel down */
+.menu-button {
+  display: none; padding: 0; border: 0; background: none; cursor: pointer; color: #fff; mix-blend-mode: difference;
+  transition: transform 0.5s ease;
+}
+.menu-button::before, .menu-button::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1.5px solid currentColor;
+}
+.menu-button::after { transform: rotate(90deg); }
+.menu-button.open { transform: rotate(45deg); }
+.item { transition: transform 0.3s ease; }
+.slid { transform: translateY(calc(var(--slide) * var(--u))); }
