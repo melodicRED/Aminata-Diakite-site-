@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration } from 'react-router';
+import { createBrowserRouter, Navigate, Outlet, RouterProvider, ScrollRestoration } from 'react-router';
 import Canvas, { type Page } from './Canvas';
 import './styles.css';
 
@@ -23,8 +23,8 @@ const routes = Object.entries(pagesByFilePath).map(([filePath, page]) => {
   return { path, element: <Canvas key={slug} page={page} /> };
 });
 
-const homeRoute = routes.find((route) => route.path === '/');
-if (!homeRoute) throw new Error(`Missing home page JSON: data/pages/${HOME_SLUG}.json`);
+const hasHomeRoute = routes.some((route) => route.path === '/');
+if (!hasHomeRoute) throw new Error(`Missing home page JSON: data/pages/${HOME_SLUG}.json`);
 
 const router = createBrowserRouter([
   {
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         <ScrollRestoration />
       </>
     ),
-    children: [...routes, { path: '*', element: homeRoute.element }],
+    children: [...routes, { path: '*', element: <Navigate to="/" replace /> }],
   },
 ]);
 

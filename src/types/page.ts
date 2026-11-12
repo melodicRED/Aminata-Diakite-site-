@@ -1,5 +1,16 @@
 import type { TextBlock } from './text';
 
+// JSON keys are intentionally terse because all 18 pages are inlined into
+// the bundle. Quick lexicon:
+//   t   = item kind            p   = phone rect [x,y,w,h] | null (hidden on phone)
+//   x,y = desktop position     po  = phone-only flag
+//   w,h = desktop size         src = media filename / iframe URL
+//   bg  = background color     hover = id of the item that reveals this one
+//   lw  = line width           r   = border radius
+//   b   = desktop text blocks  pb  = phone text blocks (when they differ)
+//   menu = this item is the phone menu button (routed separately in Canvas)
+//   slide = design units to shift when the phone menu is open
+
 export type CanvasItemKind = 'img' | 'video' | 'embed' | 'text' | 'line' | 'rect' | 'icon';
 
 export type CanvasItem = {
@@ -21,7 +32,7 @@ export type CanvasItem = {
   bg?: string;
   /** iframe title */
   title?: string;
-  /** wraps the item in a link */
+  /** wraps the item in a link (ignored for t="text" to avoid nested anchors) */
   href?: string;
   /** only visible while the item with this id is hovered */
   hover?: string;

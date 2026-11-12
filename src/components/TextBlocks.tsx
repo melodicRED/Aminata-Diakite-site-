@@ -3,10 +3,18 @@ import type { TextBlock, TextSpan } from '../types/text';
 import { designUnits } from '../utils/designUnits';
 import { Anchor } from './Anchor';
 
+const VALID_TEXT_ALIGN = new Set(['left', 'right', 'center', 'justify', 'start', 'end']);
+
+function parseTextAlign(raw: string | undefined): CSSProperties['textAlign'] {
+  if (!raw) return undefined;
+  const value = raw.replace('align-', '');
+  return VALID_TEXT_ALIGN.has(value) ? (value as CSSProperties['textAlign']) : undefined;
+}
+
 function toParagraphStyle(block: TextBlock): CSSProperties {
   return {
     lineHeight: block.lh ? designUnits(block.lh) : undefined,
-    textAlign: (block.a?.replace('align-', '') as CSSProperties['textAlign']) || undefined,
+    textAlign: parseTextAlign(block.a),
     padding: block.p?.map(designUnits).join(' '),
   };
 }
@@ -20,12 +28,13 @@ function toSpanStyle(span: TextSpan): CSSProperties {
     letterSpacing: span.l ? designUnits(span.l) : undefined,
     color: span.c,
     textDecoration: span.u ? 'underline' : undefined,
-    ...(span.hc && { ['--hover' as string]: span.hc }),
+    ...(span.hc && { '--hover': span.hc }),
   } as CSSProperties;
 }
 
 function Span({ span }: { span: TextSpan }) {
   const style = toSpanStyle(span);
+  // Preserve the line-box height when a span is intentionally empty (spacer rows).
   const text = span.t || ' ';
   if (span.h) {
     return (
