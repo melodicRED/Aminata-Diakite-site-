@@ -7,8 +7,9 @@ import { ItemContent } from './ItemContent';
 type PhoneRect = [x: number, y: number, w: number, h: number];
 
 function phoneRectOf(item: CanvasItem): PhoneRect {
-  if (item.p === undefined) return [item.x, item.y, item.w, item.h];
-  if (item.p === null) return [item.x, item.y, item.w, item.h];
+  // `item.p === null` means "hidden on phone" — the desktop rect is returned
+  // only because CSS (.desktop-only) hides the element entirely.
+  if (!item.p) return [item.x, item.y, item.w, item.h];
   const [x, y, w, h] = item.p;
   return [x, y, w, h];
 }
@@ -68,9 +69,12 @@ export function CanvasItemView({
     '--px': px, '--py': py, '--pw': pw, '--ph': ph,
   } as CSSProperties;
 
+  // Avoid nesting <a> inside <a>: text items use per-span `h` for links;
+  // wrapping the whole block with an Anchor would nest with those span links.
   const content = <ItemContent item={item} />;
-  const body = item.href
-    ? <Anchor href={item.href} className="fill">{content}</Anchor>
+  const canWrapInAnchor = item.href && item.t !== 'text';
+  const body = canWrapInAnchor
+    ? <Anchor href={item.href!} className="fill">{content}</Anchor>
     : content;
 
   return (

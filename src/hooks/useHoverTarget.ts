@@ -5,7 +5,7 @@ export function useHoverTarget(items: CanvasItem[]) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const triggerIds = useMemo(
-    () => new Set(items.map((item) => item.hover).filter(Boolean) as string[]),
+    () => new Set(items.flatMap((item) => (item.hover ? [item.hover] : []))),
     [items],
   );
 

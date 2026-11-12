@@ -6,14 +6,12 @@ import { TextBlocks } from './TextBlocks';
 export function ItemContent({ item }: { item: CanvasItem }) {
   switch (item.t) {
     case 'img':
-      return item.src
-        ? <img src={resolveMediaUrl(item.src)} alt="" loading="lazy" decoding="async" />
-        : <div className="fill" style={{ background: item.bg }} />;
+      if (!item.src) return null;
+      return <img src={resolveMediaUrl(item.src)} alt="" loading="lazy" decoding="async" />;
 
     case 'video':
-      return item.src
-        ? <video src={resolveMediaUrl(item.src)} autoPlay muted loop playsInline />
-        : null;
+      if (!item.src) return null;
+      return <video src={resolveMediaUrl(item.src)} autoPlay muted loop playsInline />;
 
     case 'embed':
       return (
@@ -60,6 +58,8 @@ export function ItemContent({ item }: { item: CanvasItem }) {
       }
       return <TextBlocks blocks={item.b} />;
 
+    // 'icon' exists only to type the phone menu button (which is intercepted
+    // by Canvas via `item.menu` before reaching this switch).
     case 'icon':
       return null;
   }
