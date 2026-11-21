@@ -48,6 +48,8 @@ export type CanvasItem = {
   menu?: 1;
   /** when the phone menu is open, slide this item down by this many design units */
   slide?: number;
+  /** scroll-driven horizontal slide: "right" or "left" */
+  anim?: 'slide-right' | 'slide-left';
 };
 
 export type Page = {
