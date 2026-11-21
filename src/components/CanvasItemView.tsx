@@ -61,6 +61,7 @@ export function CanvasItemView({
     item.hover && 'reveal',
     item.hover && isRevealed && 'on',
     item.slide !== undefined && isMenuOpen && 'slid',
+    item.anim && `anim-${item.anim}`,
   );
 
   const style = {

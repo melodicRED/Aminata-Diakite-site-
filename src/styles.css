@@ -180,3 +180,33 @@ a {
 .slid {
   transform: translateY(calc(var(--slide) * var(--u)));
 }
+
+/* Scroll-driven horizontal slide (progressive enhancement; static on Firefox). */
+@supports (animation-timeline: view()) {
+  @keyframes anim-slide-right {
+    from { transform: translateX(calc(-200 * var(--u))); }
+    to   { transform: translateX(calc(200 * var(--u))); }
+  }
+
+  @keyframes anim-slide-left {
+    from { transform: translateX(calc(200 * var(--u))); }
+    to   { transform: translateX(calc(-200 * var(--u))); }
+  }
+
+  .anim-slide-right,
+  .anim-slide-left {
+    animation-timeline: view();
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+
+  .anim-slide-right { animation-name: anim-slide-right; }
+  .anim-slide-left  { animation-name: anim-slide-left; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-slide-right,
+    .anim-slide-left {
+      animation: none;
+    }
+  }
+}
