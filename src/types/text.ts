@@ -4,8 +4,8 @@
 export type TextSpan = {
   /** text content */
   t: string;
-  /** font family */
-  f?: 'sans' | 'serif';
+  /** font family ('baskerville' is used for the FRED & FARID ampersand only) */
+  f?: 'sans' | 'serif' | 'baskerville';
   /** font weight */
   w?: number;
   /** font size, in design units */

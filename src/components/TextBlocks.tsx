@@ -33,8 +33,12 @@ function toSpanStyle(span: TextSpan): CSSProperties {
 }
 
 function Span({ span }: { span: TextSpan }) {
-  const style = toSpanStyle(span);
-  // Preserve the line-box height when a span is intentionally empty (spacer rows).
+  // Spacer rows are empty spans carrying an oversized `s`; honouring it would
+  // inflate the line box past the block's own line-height and push the
+  // paragraph out of its declared design height (seen on the phone menu panel,
+  // whose six spacer rows leaked onto the page below). Fall back to the
+  // inherited size so the spacer is exactly one line-height tall.
+  const style = span.t ? toSpanStyle(span) : { ...toSpanStyle(span), fontSize: undefined };
   const text = span.t || ' ';
   if (span.h) {
     return (

@@ -30,6 +30,14 @@
 @font-face {
   font-family: 'Inter Tight';
   font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/intertight/v9/NGSnv5HMAFg6IuGlBNMjxJEL2VmU3NS7Z2mj0QiqXA.ttf) format('truetype');
+  size-adjust: 93%;
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/intertight/v9/NGSnv5HMAFg6IuGlBNMjxJEL2VmU3NS7Z2mj6AiqXA.ttf) format('truetype');
@@ -50,6 +58,16 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/intertight/v9/NGShv5HMAFg6IuGlBNMjxLsC66ZMtb8hyW62x0xCHy5X.ttf) format('truetype');
   size-adjust: 93%;
+}
+
+/* Baskervville Italic, supplied by the client, used for a single glyph: the
+   "&" of FRED & FARID on the Work index. */
+@font-face {
+  font-family: 'Baskervville';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(./assets/fonts/Baskervville-Italic.ttf) format('truetype');
 }
 
 /* Playfair Display kept at natural metrics; line-wrap sensitive blocks only
@@ -73,6 +91,7 @@
   /* Free stand-ins for FH Oscar / FH Premier (sans) and FH 1089 (serif) */
   --sans: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
   --serif: 'Playfair Display', Georgia, serif;
+  --baskerville: 'Baskervville', Georgia, serif;
 }
 
 *,
@@ -106,6 +125,14 @@ a {
   color: var(--hover, inherit) !important;
 }
 
+/* Press feedback: the link flashes its hover colour, which on touch is the
+   only affordance the top nav and the phone menu get. */
+.link:active span {
+  color: var(--hover, inherit) !important;
+  opacity: 0.6;
+  transition: none;
+}
+
 :focus-visible {
   outline: 2px solid #7c000c;
   outline-offset: 2px;
@@ -127,6 +154,7 @@ a {
 
 .item {
   position: absolute;
+  z-index: var(--z, auto);
   left: calc(var(--x) * var(--u));
   top: calc(var(--y) * var(--u));
   width: calc(var(--w) * var(--u));
@@ -200,6 +228,20 @@ a {
   .stage .menu-button {
     display: block;
     z-index: 10;
+    /* The design box is 12 units (~14px) — too small to hit reliably. Grow the
+       hit area to 44px downwards only: the cross sits ~7px from the top of the
+       page, so a centred target would be half off-screen. The cross itself
+       stays exactly where the design puts it (see ::before / ::after). */
+    width: max(calc(var(--pw) * var(--u)), 44px);
+    height: max(calc(var(--ph) * var(--u)), 44px);
+    left: calc((var(--px) + var(--pw) / 2) * var(--u));
+    top: calc(var(--py) * var(--u));
+    transform: translateX(-50%);
+    transform-origin: 50% calc(var(--ph) / 2 * var(--u));
+  }
+
+  .stage .menu-button.open {
+    transform: translateX(-50%) rotate(45deg);
   }
 }
 
@@ -229,18 +271,22 @@ a {
 .menu-button::after {
   content: '';
   position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
+  left: 50%;
+  top: calc(var(--ph) / 2 * var(--u));
+  width: calc(var(--pw) * var(--u));
+  transform: translate(-50%, -50%);
   border-top: 1.5px solid currentColor;
 }
 
 .menu-button::after {
-  transform: rotate(90deg);
+  transform: translate(-50%, -50%) rotate(90deg);
 }
 
+/* Open: the panel sits underneath, so blending no longer helps — use the
+   panel's foreground colour instead. */
 .menu-button.open {
-  transform: rotate(45deg);
+  color: var(--menu-fg, #fff);
+  mix-blend-mode: normal;
 }
 
 /* Transition scoped to items that participate in the phone menu slide. */

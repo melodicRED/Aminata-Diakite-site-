@@ -9,6 +9,7 @@ import type { TextBlock } from './text';
 //   lw  = line width           r   = border radius
 //   b   = desktop text blocks  pb  = phone text blocks (when they differ)
 //   menu = this item is the phone menu button (routed separately in Canvas)
+//   z   = paint order override (items otherwise stack in document order)
 //   slide = design units to shift when the phone menu is open
 
 export type CanvasItemKind = 'img' | 'video' | 'embed' | 'text' | 'line' | 'rect' | 'icon';
@@ -46,6 +47,12 @@ export type CanvasItem = {
   pb?: TextBlock[];
   /** 1 = this item is the phone menu button */
   menu?: 1;
+  /**
+   * Stacking order. Items normally paint in document order; the Readymag
+   * export lists the phone menu's backdrop *after* its links, so the panel
+   * text needs an explicit z to stay on top of (and clickable through) it.
+   */
+  z?: number;
   /** when the phone menu is open, slide this item down by this many design units */
   slide?: number;
   /** scroll-driven horizontal slide: "right" or "left" */

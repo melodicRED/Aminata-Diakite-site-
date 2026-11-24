@@ -2,7 +2,7 @@
   "title": "BLOGS (dans ma tête)",
   "bg": "#ffffff",
   "h": 1189,
-  "ph": 1361,
+  "ph": 1435,
   "items": [
     {
       "id": "c510fe",
@@ -25,7 +25,7 @@
       "b": [
         {
           "sp": [
-            { "t": "WORK", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/works", "u": true }
+            { "t": "WORK", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/works", "u": true, "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -68,7 +68,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -87,7 +88,7 @@
       "b": [
         {
           "sp": [
-            { "t": "INFO", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/infos", "u": true }
+            { "t": "INFO", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/infos", "u": true, "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -166,7 +167,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -180,7 +182,7 @@
       "y": 1132.1,
       "w": 349,
       "h": 6,
-      "p": [-46, 1306.7, 349, 6],
+      "p": [-46, 1375, 349, 6],
       "t": "text",
       "b": [
         {
@@ -211,6 +213,33 @@
               "h": "/works",
               "hc": "#00ff26"
             }
+          ],
+          "lh": 6,
+          "a": "center"
+        }
+      ]
+    },
+    {
+      "id": "topc51",
+      "x": 588,
+      "y": 1132.1,
+      "w": 480,
+      "h": 6,
+      "p": [188, 1405, 207, 6],
+      "t": "text",
+      "b": [
+        {
+          "sp": [
+            { "t": ">", "f": "sans", "w": 400, "s": 35, "c": "#000000", "h": "#top", "hc": "#00ff26" }
+          ],
+          "lh": 6,
+          "a": "center"
+        }
+      ],
+      "pb": [
+        {
+          "sp": [
+            { "t": ">", "f": "sans", "w": 400, "s": 23, "c": "#000000", "h": "#top", "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -255,7 +284,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -312,7 +342,16 @@
       "b": [
         {
           "sp": [
-            { "t": "BLOG (dans ma tête)", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/blogs", "u": true }
+            {
+              "t": "BLOG (dans ma tête)",
+              "f": "sans",
+              "w": 400,
+              "s": 8,
+              "c": "#000000",
+              "h": "/blogs",
+              "u": true,
+              "hc": "#00ff26"
+            }
           ],
           "lh": 6,
           "a": "center"
@@ -594,7 +633,8 @@
           "lh": 29,
           "a": "align-left"
         }
-      ]
+      ],
+      "z": 1
     },
     {
       "id": "c51101",
@@ -606,7 +646,7 @@
       "p": [-9, -492, 336, 488],
       "slide": 487,
       "t": "rect",
-      "bg": "#ffffff"
+      "bg": "#d0ff14"
     },
     {
       "id": "c51102",

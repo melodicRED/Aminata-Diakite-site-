@@ -26,7 +26,9 @@ export function MenuButton({ item, isMenuOpen, onToggle }: MenuButtonProps) {
     <button
       type="button"
       className={cn('item', 'phone-only', 'menu-button', isMenuOpen && 'open')}
-      style={{ '--px': px, '--py': py, '--pw': pw, '--ph': ph } as CSSProperties}
+      // While closed the cross blends against whatever it sits on; once the
+      // panel is open it needs the panel's own foreground colour (item.bg).
+      style={{ '--px': px, '--py': py, '--pw': pw, '--ph': ph, '--menu-fg': item.bg } as CSSProperties}
       aria-label="Menu"
       aria-expanded={isMenuOpen}
       onClick={onToggle}
@@ -66,6 +68,7 @@ export function CanvasItemView({
 
   const style = {
     '--slide': item.slide,
+    '--z': item.z,
     '--x': item.x, '--y': item.y, '--w': item.w, '--h': item.h,
     '--px': px, '--py': py, '--pw': pw, '--ph': ph,
   } as CSSProperties;
