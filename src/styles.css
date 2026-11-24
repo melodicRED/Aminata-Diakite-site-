@@ -203,6 +203,23 @@ a {
   display: none;
 }
 
+/* Readymag centres a page vertically when its canvas is shorter than the
+   window, which is why its header sits 41px lower on the home page and 94px
+   lower on /infos and /blogs. Desktop only — the phone layout is top-aligned
+   on both sites. `safe` keeps a taller-than-window page pinned to the top
+   instead of overflowing off-screen; browsers without it just top-align. */
+@media (min-width: 701px) {
+  .canvas {
+    display: flex;
+    flex-direction: column;
+    justify-content: safe center;
+  }
+
+  .stage {
+    flex: none;
+  }
+}
+
 /* ---------- Phone layout: 325px design ---------- */
 @media (max-width: 700px) {
   .stage {
@@ -300,19 +317,25 @@ a {
 
 /* Scroll-driven horizontal slide (progressive enhancement; static on Firefox). */
 @supports (animation-timeline: view()) {
+  /* The original starts each band at its authored x and pushes it one full
+     travel across; a symmetric -200..200 both shortened the move and left it
+     ending in the wrong place. `aa` is that travel, in design units. */
   @keyframes anim-slide-right {
-    from { transform: translateX(calc(-200 * var(--u))); }
-    to   { transform: translateX(calc(200 * var(--u))); }
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(var(--aa, 200) * var(--u))); }
   }
 
   @keyframes anim-slide-left {
-    from { transform: translateX(calc(200 * var(--u))); }
-    to   { transform: translateX(calc(-200 * var(--u))); }
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(var(--aa, 200) * -1 * var(--u))); }
   }
 
   .anim-slide-right,
   .anim-slide-left {
     animation-timeline: view();
+    /* The original resolves the slide by the time the band nears the top of
+       the window; the default cover 0%-100% range runs it well past that. */
+    animation-range: cover 0% cover 70%;
     animation-timing-function: linear;
     animation-fill-mode: both;
   }

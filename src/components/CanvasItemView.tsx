@@ -68,6 +68,7 @@ export function CanvasItemView({
 
   const style = {
     '--slide': item.slide,
+    '--aa': item.aa,
     '--z': item.z,
     '--x': item.x, '--y': item.y, '--w': item.w, '--h': item.h,
     '--px': px, '--py': py, '--pw': pw, '--ph': ph,

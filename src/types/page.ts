@@ -11,6 +11,7 @@ import type { TextBlock } from './text';
 //   menu = this item is the phone menu button (routed separately in Canvas)
 //   z   = paint order override (items otherwise stack in document order)
 //   slide = design units to shift when the phone menu is open
+//   anim/aa = scroll-driven horizontal slide, and how far it travels
 
 export type CanvasItemKind = 'img' | 'video' | 'embed' | 'text' | 'line' | 'rect' | 'icon';
 
@@ -57,6 +58,8 @@ export type CanvasItem = {
   slide?: number;
   /** scroll-driven horizontal slide: "right" or "left" */
   anim?: 'slide-right' | 'slide-left';
+  /** travel of that slide, in design units (measured off the original) */
+  aa?: number;
 };
 
 export type Page = {
