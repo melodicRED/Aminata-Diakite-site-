@@ -15,7 +15,7 @@
       "b": [
         {
           "sp": [
-            { "t": "WORK", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/works", "u": true }
+            { "t": "WORK", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/works", "u": true, "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -58,7 +58,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -77,7 +78,7 @@
       "b": [
         {
           "sp": [
-            { "t": "INFO", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/infos", "u": true }
+            { "t": "INFO", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/infos", "u": true, "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -156,7 +157,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -208,6 +210,33 @@
       ]
     },
     {
+      "id": "top0a7",
+      "x": 588,
+      "y": 468.8,
+      "w": 480,
+      "h": 6,
+      "p": [188, 269.4, 207, 6],
+      "t": "text",
+      "b": [
+        {
+          "sp": [
+            { "t": ">", "f": "sans", "w": 400, "s": 35, "c": "#000000", "h": "#top", "hc": "#00ff26" }
+          ],
+          "lh": 6,
+          "a": "center"
+        }
+      ],
+      "pb": [
+        {
+          "sp": [
+            { "t": ">", "f": "sans", "w": 400, "s": 23, "c": "#000000", "h": "#top", "hc": "#00ff26" }
+          ],
+          "lh": 6,
+          "a": "center"
+        }
+      ]
+    },
+    {
       "id": "0a772c",
       "x": -182,
       "y": -9.6,
@@ -219,7 +248,7 @@
       "b": [
         {
           "sp": [
-            { "t": "WORK", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/works", "u": true }
+            { "t": "WORK", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/works", "u": true, "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -264,7 +293,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -284,7 +314,7 @@
       "b": [
         {
           "sp": [
-            { "t": "INFO", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/infos", "u": true }
+            { "t": "INFO", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/infos", "u": true, "hc": "#00ff26" }
           ],
           "lh": 6,
           "a": "center"
@@ -367,7 +397,8 @@
               "s": 8,
               "c": "#000000",
               "h": "mailto:aminatadiakite.cc@gmail.com",
-              "u": true
+              "u": true,
+              "hc": "#00ff26"
             }
           ],
           "lh": 6,
@@ -553,7 +584,8 @@
           "lh": 29,
           "a": "align-left"
         }
-      ]
+      ],
+      "z": 1
     },
     {
       "id": "0a7736",
@@ -565,7 +597,7 @@
       "p": [-9, -492, 336, 488],
       "slide": 487,
       "t": "rect",
-      "bg": "#ffffff"
+      "bg": "#d0ff14"
     },
     {
       "id": "0a7737",
@@ -605,7 +637,16 @@
       "b": [
         {
           "sp": [
-            { "t": "BLOG (dans ma tête)", "f": "sans", "w": 400, "s": 8, "c": "#000000", "h": "/blogs", "u": true }
+            {
+              "t": "BLOG (dans ma tête)",
+              "f": "sans",
+              "w": 400,
+              "s": 8,
+              "c": "#000000",
+              "h": "/blogs",
+              "u": true,
+              "hc": "#00ff26"
+            }
           ],
           "lh": 6,
           "a": "center"
@@ -746,7 +787,7 @@
               "t": "LES NUANCES EXISTENT.",
               "f": "serif",
               "w": 400,
-              "s": 16,
+              "s": 24,
               "c": "#000000",
               "h": "/lesnuancesexistent",
               "hc": "rgba(160,145,160,0.8)"
