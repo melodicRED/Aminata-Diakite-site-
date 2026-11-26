@@ -22,6 +22,8 @@ export type TextSpan = {
   u?: boolean;
   /** color on hover */
   hc?: string;
+  /** rotation in degrees (used for the back-to-top chevron) */
+  r?: number;
 };
 
 export type TextBlock = {

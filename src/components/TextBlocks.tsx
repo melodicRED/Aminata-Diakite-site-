@@ -29,6 +29,7 @@ function toSpanStyle(span: TextSpan): CSSProperties {
     color: span.c,
     textDecoration: span.u ? 'underline' : undefined,
     ...(span.hc && { '--hover': span.hc }),
+    ...(span.r !== undefined && { display: 'inline-block', transform: `rotate(${span.r}deg)` }),
   } as CSSProperties;
 }
 
